@@ -4,15 +4,9 @@ import Video from './Video'
 
 const VideoList = ({videos}) => {
 
-  const renderVideos = () => {
-    return videos.map(video => {
-      return <Video name={video.name}/>
-    })
-  }
-
   return (
     <Fragment>
-      {renderVideos()}
+      {videos.map(video => <Video key={video.etag} video={video}/>)}
     </Fragment>
   )
 }

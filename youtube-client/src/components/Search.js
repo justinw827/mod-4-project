@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-const Search = () => {
+const Search = ({handleSearch}) => {
   return (
-    <p></p>
+    <label>
+      Search:
+      <input onChange={handleSearch} type="text" name="username" />
+    </label>
   )
 }
 
