@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Card } from 'semantic-ui-react'
 
 import Video from './Video'
 

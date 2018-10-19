@@ -20,9 +20,9 @@ class Home extends Component {
   }
 
   render(){
-    console.log(this.state.term);
     return (
       <Fragment>
+        <br />
         <Search handleSearch={this.handleSearch} />
         <CategoryList />
         <VideoList videos={this.state.videos}/>

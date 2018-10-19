@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 const Login = (props) => {
-
   return (
     <form onSubmit={props.handleLogin}>
      <label>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Route, Switch} from 'react-router-dom';
 
 import NavBar from './components/NavBar'
 import Login from './components/Login'
@@ -18,8 +17,7 @@ class App extends Component {
     const username = event.target.username.value
     const password = event.target.password.value
 
-    const endpoint = "http://localhost:3001/api/v1/user/login"
-    const fetchData = {
+    fetch('http://localhost:3001/api/v1/user/login', {
       method: 'POST',
       header: {
         'Content-Type': 'application/json'
@@ -28,11 +26,10 @@ class App extends Component {
         username,
         password
       })
-    }
-
-    fetch(endpoint, fetchData)
+    })
     .then(response => response.json())
     .then(userData => {
+      debugger
       this.setState({
         currentUser: userData.id
       })
@@ -42,11 +39,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <NavBar />
-          <Switch>
-            <Route exact path="/login" render={() => <Login handleLogin={this.handleLogin}/> } />
-            <Route exact path="/" component={Home} />
-          </Switch>
+        <NavBar />
+        <Home />
+        <Login handleLogin={this.handleLogin}/>
       </div>
     );
   }

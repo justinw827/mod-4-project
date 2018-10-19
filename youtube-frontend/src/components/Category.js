@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { Card } from 'semantic-ui-react'
 
-const Category = () => {
+const Category = (props) => {
   return (
-    <p></p>
+    <p>{props.name}</p>
   )
 }
 
