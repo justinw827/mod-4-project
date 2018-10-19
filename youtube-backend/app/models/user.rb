@@ -3,5 +3,5 @@ class User < ApplicationRecord
   # has_many :vidoes, through: :comments
 
   has_many :favorites
-  has_many :vidoes, through: :favorites
+  has_many :videos, through: :favorites
 end
