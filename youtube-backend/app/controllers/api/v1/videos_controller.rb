@@ -6,6 +6,18 @@ class Api::V1::VideosController < ApplicationController
     @like = Favorite.find_or_create_by(@favorite_params)
   end
 
+  def likes
+    @video = Video.find_by(video_id: params[:id])
+
+    @likes = {likes: 0}
+
+    if @video
+      @likes = {likes: @video.favorites.length}
+    end
+
+    render json: @likes, status: :ok
+  end
+
   private
     def video_params
       params.require(:video).permit(:name, :description, :video_id)

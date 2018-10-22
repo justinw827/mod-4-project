@@ -35,6 +35,8 @@ class Home extends Component {
         videos: video.items
       })
     })
+
+
   }
 
   handleCategory = (event) => {

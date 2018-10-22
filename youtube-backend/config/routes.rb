@@ -7,8 +7,11 @@ Rails.application.routes.draw do
       resources :videos
 
       post '/user/login', to: 'users#login'
+      post '/user/signup', to: 'users#signup'
+
       post '/videos/like', to: 'videos#like'
       get '/users/:id/videos', to: 'users#videos'
+      get '/videos/:id/likes', to: 'videos#likes'
 
     end
   end
