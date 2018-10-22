@@ -3,18 +3,22 @@ import Adapter from '../Adapter';
 import VideoList from './VideoList'
 
 class Profile extends Component {
-  state = {
-    userVideos: []
+  constructor(props) {
+    super(props)
   }
 
-  formatVideos(videos){
+  state = {
+    userVideos: this.props.videos
+  }
+
+  formatVideos(videos) {
     return videos.map(video => {
-      return {id: {videoId: video.id}, snippet: {title: video.name, description: video.description}}
+      return {id: {videoId: video.id}, snippet: {title: video.name, description: video.description, publishedAt: "todayT"}}
     })
   }
 
-  componentDidMount(){
-    const url = `http://localhost:3001/api/v1/users/1/videos`
+  getVideos() {
+    const url = `http://localhost:3001/api/v1/users/${this.props.userId}/videos`
     Adapter.getVideos(url)
     .then(userVideos => {
       this.setState({
@@ -23,7 +27,12 @@ class Profile extends Component {
     })
   }
 
+  componentDidMount() {
+    debugger
+  }
+
   render() {
+    console.log("props in profile", this.props);
     return (
       <VideoList videos={this.state.userVideos} />
     )

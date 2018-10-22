@@ -1,6 +1,6 @@
 class Adapter {
 
-  static getVideos(url){
+  static getVideos(url) {
     return fetch(url).then(r => r.json())
   }
 

@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Route, Switch} from 'react-router-dom';
+import { Route, Switch, Redirect} from 'react-router-dom';
 
 import NavBar from './components/NavBar'
 import Login from './components/Login'
 import Home from './components/Home'
 import Profile from './components/Profile'
+import Adapter from './Adapter';
+// import {Redirect, Route} from 'react-router'
 
 class App extends Component {
 
   state = {
-    currentUser: -1
+    currentUser: -1,
+    videos: []
   }
 
   handleLogin = (event) => {
@@ -39,12 +42,23 @@ class App extends Component {
     fetch(endpoint, fetchData)
     .then(response => response.json())
     .then(userData => {
-      if (userData.username == "") {
+      if (userData.username === "") {
         alert("Incorrect Username or Password")
       } else {
+        // Set current user in state to return user id
         this.setState({
           currentUser: userData.id
+        }, () => {
+
+          this.fetchUsersVideos()
+          //window.location.href = 'http://localhost:3000/profile'
+          // <Redirect to='/profile'/>
+          //browserHistory.push('/profile')
+          // push('/profile', '/profile')
+
         })
+
+
       }
     })
   }
@@ -74,24 +88,48 @@ class App extends Component {
     fetch(endpoint, fetchData)
     .then(response => response.json())
     .then(userData => {
-      if (userData.username == "") {
+      if (userData.username === "") {
         alert("Username already taken")
       } else {
         this.setState({
           currentUser: userData.id
         })
+        this.fetchUsersVideos()
       }
     })
   }
 
+  formatVideos(videos) {
+    return videos.map(video => {
+      return {id: {videoId: video.id}, snippet: {title: video.name, description: video.description, publishedAt: "todayT"}}
+    })
+  }
+
+  fetchUsersVideos() {
+    const url = `http://localhost:3001/api/v1/users/${this.state.currentUser}/videos`
+    // debugger
+    fetch(`http://localhost:3001/api/v1/users/${this.state.currentUser}/videos`)
+    .then(r => r.json())
+    .then(userVideos => {
+      this.setState({
+        videos: this.formatVideos(userVideos)
+      })
+    })
+  }
+
   render() {
+    // if (this.state.currentUser > 0) {
+    //   console.log("rerendering");
+    //   return <Redirect to='/profile'/>
+    // }
+
     return (
       <div className="App">
           <NavBar />
           <Switch>
             <Route exact path="/login" render={() => <Login handleLogin={this.handleLogin} handleSignup={this.handleSignup}/> } />
             <Route exact path="/" component={Home} />
-            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/profile" component={() => <Profile userId={this.state.currentUser} videos={this.state.videos}/>} />
           </Switch>
       </div>
     );
