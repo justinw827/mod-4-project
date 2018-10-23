@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 const API_KEY = "AIzaSyAqrNT30zUZprDAT5YoDqI89Rw4VI8ZBnA";
 
-const getUrl = (term, maxResults) => `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&q=${term}&maxResults=${maxResults}&part=snippet&order=viewCount`
+const getUrl = (term, maxResults) => `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&q=${term}&maxResults=${maxResults}&type=video&part=snippet&order=viewCount`
 
 class Home extends Component {
 
