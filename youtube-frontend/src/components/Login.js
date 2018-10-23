@@ -1,7 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 const Login = (props) => {
+
+  if(props.userId > 0){
+    return <Redirect to="/profile" />
+  }
 
   return (
     <Fragment>
@@ -30,16 +35,20 @@ const Login = (props) => {
        </label>
        <input type="submit" value="Submit" />
       </form>
-      <br/>
-      <button onClick={props.handleLogout}>Log out</button>
     </Fragment>
   )
+}
+
+const mapStateToProps = (state) => {
+  return {
+    userId: state.userId
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     handleLogin(event){
-        event.preventDefault()
+      event.preventDefault()
         const username = event.target.username.value
         const password = event.target.password.value
 
@@ -49,7 +58,7 @@ const mapDispatchToProps = (dispatch) => {
           })
         }
 
-        fetch("http://localhost:3001/api/v1/user/login", {
+      return fetch("http://localhost:3001/api/v1/user/login", {
           method: 'POST',
           headers: {
             "Accept": 'application/json',
@@ -75,14 +84,8 @@ const mapDispatchToProps = (dispatch) => {
             }
             dispatch(action1);
             dispatch(action2);
-
           } else {
             alert("Incorrect Username or Password")
-              // this.fetchUsersVideos()
-              // window.location.href = 'http://localhost:3000/profile'
-              // <Redirect to='/profile'/>
-              //browserHistory.push('/profile')
-              // push('/profile', '/profile')
           }
         })
         .then(event.target.reset())
@@ -120,24 +123,11 @@ const mapDispatchToProps = (dispatch) => {
           dispatch(action2);
         } else {
           alert("Username already taken")
-          // this.fetchUsersVideos()
         }
       })
       .then(event.target.reset())
-    },
-    handleLogout(event){
-      const action1 = {
-        type: 'CHANGE_CURRENT_USER',
-        user_id: -1
-      }
-      const action2 = {
-        type: 'UPDATE_USER_VIDEOS',
-        userVideos: []
-      }
-      dispatch(action1);
-      dispatch(action2);
     }
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

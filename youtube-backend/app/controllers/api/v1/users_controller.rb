@@ -22,12 +22,6 @@ class Api::V1::UsersController < ApplicationController
     render json: @user, status: :ok
   end
 
-  # def videos
-  #   @user = User.find(params[:id])
-  #   @videos = @user.videos
-  #   render json: @videos, status: :ok
-  # end
-
   private
 
   def user_params

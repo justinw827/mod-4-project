@@ -1,29 +1,17 @@
-// import React, { Component, Fragment } from 'react';
-// import { NavLink } from 'react-router-dom';
-//
-//
-// const NavBar = () => {
-//   return (
-//     <Fragment>
-//       <NavLink to="/">Home</NavLink>
-//       <br />
-//       <NavLink to="/login" exact>Login/Sign Up</NavLink>
-//       <br />
-//       <NavLink to="/profile" exact>Profile</NavLink>
-//     </Fragment>
-//   )
-// }
-//
-// export default NavBar
-
 import React, { Component } from 'react'
-import { Menu, Segment } from 'semantic-ui-react'
+import { Menu, Segment, Label } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom';
 
-export default class MenuExampleInvertedSecondary extends Component {
+class NavBar extends Component {
   state = { activeItem: 'home' }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleItemClick = (e, { name }) => {
+    this.setState({ activeItem: name })
+    // debugger
+    if (e.target.innerText === "Logout"){
+      window.location.href = "http://localhost:3000/"
+    }
+  }
 
   render() {
     const { activeItem } = this.state
@@ -42,8 +30,20 @@ export default class MenuExampleInvertedSecondary extends Component {
             active={activeItem === 'login/signup'}
             onClick={this.handleItemClick}
           /></NavLink>
+        <Menu.Item
+            name='logout'
+            active={activeItem === 'logout'}
+            onClick={this.handleItemClick}
+          />
         </Menu>
       </Segment>
     )
   }
 }
+
+export default NavBar
+//
+// <Label as="a" image>
+//   <img src="https://www.boostability.com/wp-content/uploads/2014/09/Panda-Update.jpg" />
+//   Rich
+// </Label>

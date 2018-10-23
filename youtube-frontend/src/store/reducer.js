@@ -1,7 +1,8 @@
 const defaultState = {
   userId: -1,
   userVideos: [],
-  homeVideos: []
+  index: 0,
+  allVideos: []
 }
 
 export default (state=defaultState, action) => {
@@ -18,6 +19,15 @@ export default (state=defaultState, action) => {
       return newState
     case "UPDATE_HOME_VIDEOS":
       newState.homeVideos = action.homeVideos
+      return newState
+    case "UPDATE_ALL_VIDEOS":
+      newState.allVideos = action.allVideos
+      return newState
+    case "GO_BACK":
+      newState.index = newState.index - 9
+      return newState
+    case "GO_FORWARD":
+      newState.index = newState.index + 9
       return newState
     default:
       return state

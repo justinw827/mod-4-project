@@ -19,12 +19,6 @@ class Video extends Component {
       })
     })
   }
-  //
-  // formatVideos(videos) {
-  //   return videos.map(video => {
-  //     return {id: {videoId: video.id}, snippet: {title: video.name, description: video.description, publishedAt: "todayT"}}
-  //   })
-  // }
 
   handleLike = () => {
     if (this.props.userId < 0) {
@@ -51,7 +45,6 @@ class Video extends Component {
           btnColor: "red"
         })
         this.props.addUserVideo(this.props.video)
-
       })
     }
   }

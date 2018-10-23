@@ -4,6 +4,7 @@ import VideoList from './VideoList';
 import Search from './Search';
 import Adapter from '../Adapter';
 import { connect } from 'react-redux';
+import PageButton from './PageButton';
 
 const API_KEY = "AIzaSyAqrNT30zUZprDAT5YoDqI89Rw4VI8ZBnA";
 
@@ -13,27 +14,27 @@ class Home extends Component {
 
   handleSearch = event => {
     let term = event.target.value
-    const url = getUrl(term, 9)
+    const url = getUrl(term, 45)
     Adapter.getVideos(url)
     .then(video => {
-      this.props.updateHomeVideos(video.items)
+      this.props.updateAllVideos(video.items)
     })
   }
 
   componentDidMount(){
-    const url = getUrl("", 9)
+    const url = getUrl("", 45)
     Adapter.getVideos(url)
     .then(video => {
-      this.props.updateHomeVideos(video.items)
+      this.props.updateAllVideos(video.items)
     })
   }
 
   handleCategory = (event) => {
     let term = event.target.innerText
-    const url = getUrl(term, 9)
+    const url = getUrl(term, 45)
     Adapter.getVideos(url)
     .then(video => {
-      this.props.updateHomeVideos(video.items)
+      this.props.updateAllVideos(video.items)
     })
   }
 
@@ -43,7 +44,8 @@ class Home extends Component {
         <br />
         <Search handleSearch={this.handleSearch} />
         <CategoryList handleCategory={this.handleCategory} />
-        <VideoList videos={this.props.homeVideos}/>
+        <VideoList videos={this.props.allVideos.slice(this.props.index, this.props.index+9)}/>
+        <PageButton />
       </Fragment>
     )
   }
@@ -51,8 +53,10 @@ class Home extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    index: state.index,
     userId: state.userId,
-    homeVideos: state.homeVideos
+    homeVideos: state.homeVideos,
+    allVideos: state.allVideos
   }
 }
 
@@ -62,6 +66,13 @@ const mapDispatchToProps = (dispatch) => {
       const action = {
         type: 'UPDATE_HOME_VIDEOS',
         homeVideos: homeVideos
+      }
+      dispatch(action);
+    },
+    updateAllVideos(allVideos){
+      const action = {
+        type: 'UPDATE_ALL_VIDEOS',
+        allVideos: allVideos
       }
       dispatch(action);
     }
