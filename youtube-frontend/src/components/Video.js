@@ -51,12 +51,11 @@ class Video extends Component {
       })
       .then(r => r.json())
       .then(likes => {
-        console.log(likes);
         this.setState({
           likes: likes.length,
           btnColor: "red"
         })
-        // debugger
+        console.log("profile video", this.props.video);
         this.props.addUserVideo(this.props.video)
 
       })

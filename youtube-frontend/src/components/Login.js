@@ -64,7 +64,7 @@ const mapDispatchToProps = (dispatch) => {
         })
         .then(response => response.json())
         .then(userData => {
-          console.log(userData);
+          console.log("initial videos", userData);
           if (userData.user.username) {
             const action1 = {
               type: 'CHANGE_CURRENT_USER',
