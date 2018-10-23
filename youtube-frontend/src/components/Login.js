@@ -45,7 +45,7 @@ const mapDispatchToProps = (dispatch) => {
 
         function formatVideos(videos) {
           return videos.map(video => {
-            return {id: {videoId: video.id}, snippet: {title: video.name, description: video.description, publishedAt: "todayT"}}
+            return {id: {videoId: video.video_id}, snippet: {title: video.name, description: video.description, publishedAt: "todayT"}}
           })
         }
 
