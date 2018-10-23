@@ -1,0 +1,208 @@
+Started POST "/api/v1/user/login" for ::1 at 2018-10-23 13:04:01 -0400
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/justinwang/.rvm/gems/ruby-2.3.3/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Processing by Api::V1::UsersController#login as JSON
+  Parameters: {"user"=>{"username"=>"justinwang", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 AND "users"."password" = $2 LIMIT $3[0m  [["username", "justinwang"], ["password", "pw"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:3
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 2.4ms)
+
+
+Started POST "/api/v1/user/login" for ::1 at 2018-10-23 13:04:08 -0400
+Processing by Api::V1::UsersController#login as JSON
+  Parameters: {"user"=>{"username"=>"justin", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 AND "users"."password" = $2 LIMIT $3[0m  [["username", "justin"], ["password", "pw"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:3
+  [1m[36mVideo Load (0.8ms)[0m  [1m[34mSELECT "videos".* FROM "videos" INNER JOIN "favorites" ON "videos"."id" = "favorites"."video_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:10
+Completed 200 OK in 64ms (Views: 14.3ms | ActiveRecord: 17.3ms)
+
+
+Started GET "/api/v1/videos/1/likes" for ::1 at 2018-10-23 13:04:09 -0400
+Processing by Api::V1::VideosController#likes as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mVideo Load (0.3ms)[0m  [1m[34mSELECT  "videos".* FROM "videos" WHERE "videos"."video_id" = $1 LIMIT $2[0m  [["video_id", "1"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/videos_controller.rb:13
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/v1/videos/2/likes" for ::1 at 2018-10-23 13:04:09 -0400
+Processing by Api::V1::VideosController#likes as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mVideo Load (0.3ms)[0m  [1m[34mSELECT  "videos".* FROM "videos" WHERE "videos"."video_id" = $1 LIMIT $2[0m  [["video_id", "2"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/videos_controller.rb:13
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/v1/videos/kJQP7kiw5Fk/likes" for ::1 at 2018-10-23 13:04:20 -0400
+Started GET "/api/v1/videos/JGwWNGJdvx8/likes" for ::1 at 2018-10-23 13:04:20 -0400
+Processing by Api::V1::VideosController#likes as */*
+Processing by Api::V1::VideosController#likes as */*
+  Parameters: {"id"=>"JGwWNGJdvx8"}
+  Parameters: {"id"=>"kJQP7kiw5Fk"}
+  [1m[36mVideo Load (0.4ms)[0m  [1m[34mSELECT  "videos".* FROM "videos" WHERE "videos"."video_id" = $1 LIMIT $2[0m  [["video_id", "kJQP7kiw5Fk"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/videos_controller.rb:13
+  [1m[36mVideo Load (1.9ms)[0m  [1m[34mSELECT  "videos".* FROM "videos" WHERE "videos"."video_id" = $1 LIMIT $2[0m  [["video_id", "JGwWNGJdvx8"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/videos_controller.rb:13
+Started GET "/api/v1/videos/RgKAFK5djSk/likes" for ::1 at 2018-10-23 13:04:20 -0400
+  [1m[36mFavorite Load (1.6ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."video_id" = $1[0m  [["video_id", 1]]
+  ↳ app/controllers/api/v1/videos_controller.rb:18
+Started GET "/api/v1/videos/OPf0YbXqDm0/likes" for ::1 at 2018-10-23 13:04:20 -0400
+Started GET "/api/v1/videos/9bZkp7q19f0/likes" for ::1 at 2018-10-23 13:04:20 -0400
+  [1m[36mFavorite Load (1.5ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."video_id" = $1[0m  [["video_id", 2]]
+Processing by Api::V1::VideosController#likes as */*
+  Parameters: {"id"=>"RgKAFK5djSk"}
+  ↳ app/controllers/api/v1/videos_controller.rb:18
+Completed 200 OK in 39ms (Views: 0.2ms | ActiveRecord: 5.7ms)
+
+
+  [1m[36mVideo Load (12.3ms)[0m  [1m[34mSELECT  "videos".* FROM "videos" WHERE "videos"."video_id" = $1 LIMIT $2[0m  [["video_id", "RgKAFK5djSk"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/videos_controller.rb:13
+Completed 200 OK in 14ms (Views: 0.2ms | ActiveRecord: 12.3ms)
+
+
+Completed 200 OK in 45ms (Views: 0.1ms | ActiveRecord: 18.5ms)
+
+
+Processing by Api::V1::VideosController#likes as */*
+  Parameters: {"id"=>"OPf0YbXqDm0"}
+Processing by Api::V1::VideosController#likes as */*
+Started GET "/api/v1/videos/09R8_2nJtjg/likes" for ::1 at 2018-10-23 13:04:20 -0400
+  [1m[36mVideo Load (1.8ms)[0m  [1m[34mSELECT  "videos".* FROM "videos" WHERE "videos"."video_id" = $1 LIMIT $2[0m  [["video_id", "OPf0YbXqDm0"], ["LIMIT", 1]]
+Started GET "/api/v1/videos/CevxZvSJLk8/likes" for ::1 at 2018-10-23 13:04:20 -0400
+  Parameters: {"id"=>"9bZkp7q19f0"}
+Started GET "/api/v1/videos/nfWlot6h_JM/likes" for ::1 at 2018-10-23 13:04:20 -0400
+Processing by Api::V1::VideosController#likes as */*
+  Parameters: {"id"=>"CevxZvSJLk8"}
+  ↳ app/controllers/api/v1/videos_controller.rb:13
+Processing by Api::V1::VideosController#likes as */*
+  [1m[36mVideo Load (1.8ms)[0m  [1m[34mSELECT  "videos".* FROM "videos" WHERE "videos"."video_id" = $1 LIMIT $2[0m  [["video_id", "9bZkp7q19f0"], ["LIMIT", 1]]
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 1.8ms)
+
+
+Processing by Api::V1::VideosController#likes as */*
+  Parameters: {"id"=>"09R8_2nJtjg"}
+  [1m[36mVideo Load (2.4ms)[0m  [1m[34mSELECT  "videos".* FROM "videos" WHERE "videos"."video_id" = $1 LIMIT $2[0m  [["video_id", "CevxZvSJLk8"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/videos_controller.rb:13
+  Parameters: {"id"=>"nfWlot6h_JM"}
+  ↳ app/controllers/api/v1/videos_controller.rb:13
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 1.8ms)
+
+
+  [1m[36mVideo Load (0.9ms)[0m  [1m[34mSELECT  "videos".* FROM "videos" WHERE "videos"."video_id" = $1 LIMIT $2[0m  [["video_id", "09R8_2nJtjg"], ["LIMIT", 1]]
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 2.4ms)
+
+
+  [1m[36mVideo Load (0.7ms)[0m  [1m[34mSELECT  "videos".* FROM "videos" WHERE "videos"."video_id" = $1 LIMIT $2[0m  [["video_id", "nfWlot6h_JM"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/videos_controller.rb:13
+  ↳ app/controllers/api/v1/videos_controller.rb:13
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 0.9ms)
+
+
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/v1/videos/fRh_vgS2dFE/likes" for ::1 at 2018-10-23 13:04:21 -0400
+Processing by Api::V1::VideosController#likes as */*
+  Parameters: {"id"=>"fRh_vgS2dFE"}
+  [1m[36mVideo Load (0.3ms)[0m  [1m[34mSELECT  "videos".* FROM "videos" WHERE "videos"."video_id" = $1 LIMIT $2[0m  [["video_id", "fRh_vgS2dFE"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/videos_controller.rb:13
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/v1/videos/YQHsXMglC9A/likes" for ::1 at 2018-10-23 13:04:22 -0400
+Processing by Api::V1::VideosController#likes as */*
+  Parameters: {"id"=>"YQHsXMglC9A"}
+  [1m[36mVideo Load (0.3ms)[0m  [1m[34mSELECT  "videos".* FROM "videos" WHERE "videos"."video_id" = $1 LIMIT $2[0m  [["video_id", "YQHsXMglC9A"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/videos_controller.rb:13
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/v1/videos/YqeW9_5kURI/likes" for ::1 at 2018-10-23 13:04:22 -0400
+Started GET "/api/v1/videos/7PCkvCPvDXk/likes" for ::1 at 2018-10-23 13:04:22 -0400
+Started GET "/api/v1/videos/e-ORhEE9VVg/likes" for ::1 at 2018-10-23 13:04:22 -0400
+Processing by Api::V1::VideosController#likes as */*
+Processing by Api::V1::VideosController#likes as */*
+  Parameters: {"id"=>"YqeW9_5kURI"}
+  Parameters: {"id"=>"7PCkvCPvDXk"}
+Processing by Api::V1::VideosController#likes as */*
+  [1m[36mVideo Load (1.2ms)[0m  [1m[34mSELECT  "videos".* FROM "videos" WHERE "videos"."video_id" = $1 LIMIT $2[0m  [["video_id", "YqeW9_5kURI"], ["LIMIT", 1]]
+  Parameters: {"id"=>"e-ORhEE9VVg"}
+  [1m[36mVideo Load (0.3ms)[0m  [1m[34mSELECT  "videos".* FROM "videos" WHERE "videos"."video_id" = $1 LIMIT $2[0m  [["video_id", "7PCkvCPvDXk"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/videos_controller.rb:13
+  ↳ app/controllers/api/v1/videos_controller.rb:13
+Completed 200 OK in 68ms (Views: 0.1ms | ActiveRecord: 1.2ms)
+
+
+Completed 200 OK in 66ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+  [1m[36mVideo Load (1.1ms)[0m  [1m[34mSELECT  "videos".* FROM "videos" WHERE "videos"."video_id" = $1 LIMIT $2[0m  [["video_id", "e-ORhEE9VVg"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/videos_controller.rb:13
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/api/v1/videos/like" for ::1 at 2018-10-23 13:04:28 -0400
+Processing by Api::V1::VideosController#like as JSON
+  Parameters: {"video"=>{"name"=>"Katy Perry - Roar (Official)", "description"=>"Get “Roar” from Katy Perry's 'PRISM': http://katy.to/PRISM WITNESS: The Tour tickets available now! https://www.katyperry.com/tour Official music video for Katy ...", "video_id"=>"CevxZvSJLk8"}, "like"=>{"user_id"=>1}}
+  [1m[36mVideo Load (0.7ms)[0m  [1m[34mSELECT  "videos".* FROM "videos" WHERE "videos"."name" = $1 AND "videos"."description" = $2 AND "videos"."video_id" = $3 LIMIT $4[0m  [["name", "Katy Perry - Roar (Official)"], ["description", "Get “Roar” from Katy Perry's 'PRISM': http://katy.to/PRISM WITNESS: The Tour tickets available now! https://www.katyperry.com/tour Official music video for Katy ..."], ["video_id", "CevxZvSJLk8"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/videos_controller.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/videos_controller.rb:3
+  [1m[36mVideo Create (1.0ms)[0m  [1m[32mINSERT INTO "videos" ("name", "description", "video_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Katy Perry - Roar (Official)"], ["description", "Get “Roar” from Katy Perry's 'PRISM': http://katy.to/PRISM WITNESS: The Tour tickets available now! https://www.katyperry.com/tour Official music video for Katy ..."], ["video_id", "CevxZvSJLk8"], ["created_at", "2018-10-23 17:04:28.778800"], ["updated_at", "2018-10-23 17:04:28.778800"]]
+  ↳ app/controllers/api/v1/videos_controller.rb:3
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/videos_controller.rb:3
+  [1m[36mFavorite Load (1.6ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1 AND "favorites"."video_id" = $2 LIMIT $3[0m  [["user_id", 1], ["video_id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/videos_controller.rb:6
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/videos_controller.rb:6
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/videos_controller.rb:6
+  [1m[36mVideo Load (0.3ms)[0m  [1m[34mSELECT  "videos".* FROM "videos" WHERE "videos"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/videos_controller.rb:6
+  [1m[36mFavorite Create (1.7ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "video_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["video_id", 3], ["created_at", "2018-10-23 17:04:28.809364"], ["updated_at", "2018-10-23 17:04:28.809364"]]
+  ↳ app/controllers/api/v1/videos_controller.rb:6
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/videos_controller.rb:6
+  [1m[36mFavorite Load (0.3ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."video_id" = $1[0m  [["video_id", 3]]
+  ↳ app/controllers/api/v1/videos_controller.rb:9
+Completed 200 OK in 41ms (Views: 1.9ms | ActiveRecord: 8.2ms)
+
+
+Started GET "/api/v1/videos/1/likes" for ::1 at 2018-10-23 13:04:30 -0400
+Processing by Api::V1::VideosController#likes as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mVideo Load (0.4ms)[0m  [1m[34mSELECT  "videos".* FROM "videos" WHERE "videos"."video_id" = $1 LIMIT $2[0m  [["video_id", "1"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/videos_controller.rb:13
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/v1/videos/2/likes" for ::1 at 2018-10-23 13:04:30 -0400
+Processing by Api::V1::VideosController#likes as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mVideo Load (0.3ms)[0m  [1m[34mSELECT  "videos".* FROM "videos" WHERE "videos"."video_id" = $1 LIMIT $2[0m  [["video_id", "2"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/videos_controller.rb:13
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/v1/videos/CevxZvSJLk8/likes" for ::1 at 2018-10-23 13:04:30 -0400
+Processing by Api::V1::VideosController#likes as */*
+  Parameters: {"id"=>"CevxZvSJLk8"}
+  [1m[36mVideo Load (0.4ms)[0m  [1m[34mSELECT  "videos".* FROM "videos" WHERE "videos"."video_id" = $1 LIMIT $2[0m  [["video_id", "CevxZvSJLk8"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/videos_controller.rb:13
+  [1m[36mFavorite Load (0.3ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."video_id" = $1[0m  [["video_id", 3]]
+  ↳ app/controllers/api/v1/videos_controller.rb:18
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/api/v1/user/login" for ::1 at 2018-10-23 13:13:28 -0400
+Processing by Api::V1::UsersController#login as JSON
+  Parameters: {"user"=>{"username"=>"justin", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 AND "users"."password" = $2 LIMIT $3[0m  [["username", "justin"], ["password", "pw"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:3
+  [1m[36mVideo Load (0.9ms)[0m  [1m[34mSELECT "videos".* FROM "videos" INNER JOIN "favorites" ON "videos"."id" = "favorites"."video_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:10
+Completed 200 OK in 23ms (Views: 9.0ms | ActiveRecord: 2.5ms)
+
+

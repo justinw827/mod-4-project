@@ -61,6 +61,8 @@ class Video extends Component {
     const videoId = video.id.videoId;
     const videoUrl = `http://www.youtube.com/embed/${videoId}`;
 
+    debugger
+
     const time = video.snippet.publishedAt.split("T")[0]
 
     return (
