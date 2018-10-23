@@ -1,11 +1,13 @@
 class Api::V1::UsersController < ApplicationController
   def login
     @user = User.find_by(user_params)
+    # byebug
     if !@user
-      @user = {username: "", password: ""}
+      @user = {username: ""}
+    else
+      @videos = @user.videos
     end
-
-    render json: @user, status: :ok
+    render json: {user: @user, videos: @videos}, status: :ok
   end
 
   def signup
@@ -20,11 +22,11 @@ class Api::V1::UsersController < ApplicationController
     render json: @user, status: :ok
   end
 
-  def videos
-    @user = User.find(params[:id])
-    @videos = @user.videos
-    render json: @videos, status: :ok
-  end
+  # def videos
+  #   @user = User.find(params[:id])
+  #   @videos = @user.videos
+  #   render json: @videos, status: :ok
+  # end
 
   private
 

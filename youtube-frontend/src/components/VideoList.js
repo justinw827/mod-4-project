@@ -8,7 +8,7 @@ const VideoList = ({videos, handleLike}) => {
   return (
     <Fragment>
       <Card.Group itemsPerRow={3}>
-        {videos.map(video => <Video key={video.etag} video={video} handleLike={handleLike}/>)}
+        {videos.map(video => <Video key={video.etag} video={video}/>)}
       </Card.Group>
     </Fragment>
   )

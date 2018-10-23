@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Card, Icon, Image, Button, Label } from 'semantic-ui-react';
 
 import Adapter from '../Adapter';
 
 class Video extends Component {
-  constructor(props) {
-    super(props)
 
-    this.state = {
+    state = {
       likes: 0,
-      liked: false
+      btnColor: ""
     }
-  }
 
   componentDidMount() {
     Adapter.getLocalVideoLikes(this.props.video.id.videoId)
@@ -22,11 +20,35 @@ class Video extends Component {
     })
   }
 
-  incrementLike = () => {
-    if (!this.state.liked) {
-      this.setState({
-        likes: this.state.likes + 1,
-        liked: true
+  handleLike = () => {
+    if (this.props.userId < 0) {
+      alert("Please signin to like videos")
+    } else if (this.props.userVideos.find(video => video.id.videoId == this.props.video.id.videoId)){
+      alert("You aleady liked this video")
+    } else {
+      fetch("http://localhost:3001/api/v1/videos/like", {
+        method: "POST",
+        headers: {
+          "Accept": 'application/json',
+          "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+          video: {
+            name: this.props.video.snippet.title,
+            description: this.props.video.snippet.description,
+            video_id: this.props.video.id.videoId
+          },
+          like: {
+            user_id: this.props.userId
+          }
+        })
+      })
+      .then(r => r.json())
+      .then(data => {
+        this.setState({
+          likes: this.state.likes + 1,
+          btnColor: "red"
+        })
       })
     }
   }
@@ -40,7 +62,7 @@ class Video extends Component {
 
     return (
         <Card>
-        <iframe src={videoUrl}></iframe>
+        <iframe src={videoUrl} frameBorder="0" allowFullScreen></iframe>
         <Card.Content>
           <Card.Header>{video.snippet.title}</Card.Header>
           <Card.Meta>
@@ -50,10 +72,7 @@ class Video extends Component {
         </Card.Content>
         <Card.Content extra>
           <Button as='div' labelPosition='right'>
-           <Button onClick={e => {
-             handleLike(e, video)
-             this.incrementLike()
-           }} icon>
+           <Button color={this.state.btnColor} onClick={this.handleLike} icon>
              <Icon name='fire' />
              Like
            </Button>
@@ -67,4 +86,12 @@ class Video extends Component {
   } // end render
 } // end class
 
-export default Video
+
+const mapStateToProps = (state) => {
+  return {
+    userId: state.userId,
+    userVideos: state.userVideos
+  }
+}
+
+export default connect(mapStateToProps)(Video);

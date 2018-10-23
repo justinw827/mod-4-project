@@ -1,10 +1,11 @@
 import React from 'react';
+import { Input } from 'semantic-ui-react'
 
 const Search = ({handleSearch}) => {
   return (
     <label>
       Search:
-      <input onChange={handleSearch} type="text" name="username" />
+      <Input onChange={handleSearch} size='large' icon='search' placeholder='Search...' /><br /><br />
     </label>
   )
 }

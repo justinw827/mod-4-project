@@ -10,8 +10,8 @@ Rails.application.routes.draw do
       post '/user/signup', to: 'users#signup'
 
       post '/videos/like', to: 'videos#like'
-      get '/users/:id/videos', to: 'users#videos'
       get '/videos/:id/likes', to: 'videos#likes'
+      # get '/users/:id/videos', to: 'users#videos'
 
     end
   end
