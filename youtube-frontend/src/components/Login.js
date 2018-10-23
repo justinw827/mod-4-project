@@ -64,7 +64,6 @@ const mapDispatchToProps = (dispatch) => {
         })
         .then(response => response.json())
         .then(userData => {
-          console.log(userData);
           if (userData.user.username) {
             const action1 = {
               type: 'CHANGE_CURRENT_USER',

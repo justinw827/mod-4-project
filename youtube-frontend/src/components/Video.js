@@ -32,31 +32,24 @@ class Video extends Component {
     } else if (this.props.userVideos.find(video => video.id.videoId == this.props.video.id.videoId)){
       alert("You aleady liked this video")
     } else {
-      fetch("http://localhost:3001/api/v1/videos/like", {
-        method: "POST",
-        headers: {
-          "Accept": 'application/json',
-          "Content-Type": 'application/json'
+      const url = "http://localhost:3001/api/v1/videos/like"
+      const fetchBody = {
+        video: {
+          name: this.props.video.snippet.title,
+          description: this.props.video.snippet.description,
+          video_id: this.props.video.id.videoId
         },
-        body: JSON.stringify({
-          video: {
-            name: this.props.video.snippet.title,
-            description: this.props.video.snippet.description,
-            video_id: this.props.video.id.videoId
-          },
-          like: {
-            user_id: this.props.userId
-          }
-        })
-      })
-      .then(r => r.json())
+        like: {
+          user_id: this.props.userId
+        }
+      }
+
+      Adapter.fetchPost(url, fetchBody)
       .then(likes => {
-        console.log(likes);
         this.setState({
           likes: likes.length,
           btnColor: "red"
         })
-        // debugger
         this.props.addUserVideo(this.props.video)
 
       })
@@ -65,7 +58,6 @@ class Video extends Component {
 
   render() {
     const {video, handleLike} = this.props
-    console.log(this.props);
     const videoId = video.id.videoId;
     const videoUrl = `http://www.youtube.com/embed/${videoId}`;
 

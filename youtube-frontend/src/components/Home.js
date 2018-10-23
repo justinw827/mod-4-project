@@ -13,7 +13,6 @@ class Home extends Component {
 
   handleSearch = event => {
     let term = event.target.value
-    console.log(term);
     const url = getUrl(term, 9)
     Adapter.getVideos(url)
     .then(video => {
