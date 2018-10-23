@@ -42,7 +42,6 @@ class Home extends Component {
     return (
       <Fragment>
         <br />
-
         <Search handleSearch={this.handleSearch} />
         <CategoryList handleCategory={this.handleCategory} />
         <VideoList videos={this.props.homeVideos}/>

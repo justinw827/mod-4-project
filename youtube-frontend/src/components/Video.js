@@ -19,6 +19,12 @@ class Video extends Component {
       })
     })
   }
+  //
+  // formatVideos(videos) {
+  //   return videos.map(video => {
+  //     return {id: {videoId: video.id}, snippet: {title: video.name, description: video.description, publishedAt: "todayT"}}
+  //   })
+  // }
 
   handleLike = () => {
     if (this.props.userId < 0) {
@@ -44,17 +50,22 @@ class Video extends Component {
         })
       })
       .then(r => r.json())
-      .then(data => {
+      .then(likes => {
+        console.log(likes);
         this.setState({
-          likes: this.state.likes + 1,
+          likes: likes.length,
           btnColor: "red"
         })
+        // debugger
+        this.props.addUserVideo(this.props.video)
+
       })
     }
   }
 
   render() {
     const {video, handleLike} = this.props
+    console.log(this.props);
     const videoId = video.id.videoId;
     const videoUrl = `http://www.youtube.com/embed/${videoId}`;
 
@@ -94,4 +105,16 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Video);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addUserVideo(userVideo){
+      const action = {
+        type: 'ADD_USER_VIDEO',
+        userVideo: userVideo
+      }
+      dispatch(action);
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Video);

@@ -4,6 +4,9 @@ class Api::V1::VideosController < ApplicationController
     @favorite_params = favorite_params
     @favorite_params[:video_id] = @video.id
     @like = Favorite.find_or_create_by(@favorite_params)
+    @likes = @video.favorites
+
+    render json: @likes, status: :ok
   end
 
   def likes

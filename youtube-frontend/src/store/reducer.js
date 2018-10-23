@@ -13,6 +13,9 @@ export default (state=defaultState, action) => {
     case "UPDATE_USER_VIDEOS":
       newState.userVideos = action.userVideos
       return newState
+    case "ADD_USER_VIDEO":
+      newState.userVideos.push(action.userVideo)
+      return newState
     case "UPDATE_HOME_VIDEOS":
       newState.homeVideos = action.homeVideos
       return newState
