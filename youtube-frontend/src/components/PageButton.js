@@ -23,7 +23,7 @@ const PageButton = (props) => {
   return(
   <Button.Group>
     <Button onClick={goBack} labelPosition='left' icon='left chevron' content='Back' />
-    <Button onClick={goForword} labelPosition='right' icon='right chevron' content='Forward' />
+    <Button onClick={goForword} labelPosition='right' icon='right chevron' content='Next' />
   </Button.Group>)
 }
 

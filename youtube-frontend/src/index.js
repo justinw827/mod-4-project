@@ -8,6 +8,8 @@ import store from './store';
 import { BrowserRouter as Router} from 'react-router-dom';
 import { Provider } from 'react-redux';
 
+// Wrap all components in a Provider component with a store prop
+// Wrap App with Router component to enable Route functionality in App
 ReactDOM.render(<Provider store={store}><Router><App /></Router></Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

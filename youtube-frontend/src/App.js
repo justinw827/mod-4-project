@@ -11,27 +11,6 @@ import { connect } from 'react-redux';
 
 class App extends Component {
 
-  state = {
-    videos: []
-  }
-
-  formatVideos(videos) {
-    return videos.map(video => {
-      return {id: {videoId: video.id}, snippet: {title: video.name, description: video.description, publishedAt: "todayT"}}
-    })
-  }
-
-  fetchUsersVideos() {
-    const url = `http://localhost:3001/api/v1/users/${this.state.currentUser}/videos`
-    fetch(`http://localhost:3001/api/v1/users/${this.state.currentUser}/videos`)
-    .then(r => r.json())
-    .then(userVideos => {
-      this.setState({
-        videos: this.formatVideos(userVideos)
-      })
-    })
-  }
-
   render() {
     return (
       <div className="App">
