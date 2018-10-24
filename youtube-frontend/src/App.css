@@ -66,3 +66,13 @@
 #form-container {
   display: flex;
 }
+
+#profile-name {
+  font-size: 6em;
+  font-family: 'Poppins', sans-serif;
+}
+
+#homepage-title {
+  font-size: 6em;
+  font-family: 'Poppins', sans-serif;
+}

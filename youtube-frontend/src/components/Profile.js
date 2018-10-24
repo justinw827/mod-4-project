@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Adapter from '../Adapter';
 import VideoList from './VideoList'
 import { connect } from 'react-redux';
@@ -6,8 +6,22 @@ import { connect } from 'react-redux';
 class Profile extends Component {
 
   render() {
+    let tags = <p></p>
+
+    if (this.props.userId < 0) {
+      tags = <h2>Login to see your videos</h2>
+    } else if (this.props.userVideos.length > 0) {
+      tags = <Fragment><h1>My Videos</h1><VideoList videos={this.props.userVideos} /></Fragment>
+    } else {
+      tags = <h2>No Videos</h2>
+    }
+
+
     return (
-      <VideoList videos={this.props.userVideos} />
+      <Fragment>
+        <h1 id="profile-name">{this.props.username}</h1>
+        {tags}
+      </Fragment>
     )
   }
 }
@@ -15,7 +29,8 @@ class Profile extends Component {
 const mapStateToProps = (state) => {
   return {
     userId: state.userId,
-    userVideos: state.userVideos
+    userVideos: state.userVideos,
+    username: state.username
   }
 }
 

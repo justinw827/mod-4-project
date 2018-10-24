@@ -2,7 +2,8 @@ const defaultState = {
   userId: -1,
   userVideos: [],
   index: 0,
-  allVideos: []
+  allVideos: [],
+  username: ""
 }
 
 export default (state=defaultState, action) => {
@@ -10,6 +11,7 @@ export default (state=defaultState, action) => {
   switch (action.type) {
     case "CHANGE_CURRENT_USER":
       newState.userId = action.user_id
+      newState.username = action.username
       return newState
     case "UPDATE_USER_VIDEOS":
       newState.userVideos = action.userVideos

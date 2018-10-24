@@ -66,10 +66,16 @@ class Home extends Component {
   render(){
     return (
       <Fragment>
+        <h1 id="homepage-title">Really Cool App</h1>
+        <br />
         <br />
         <Search handleSearch={this.handleSearch} />
         <br />
+        <br />
+        <br />
         <CategoryList handleCategory={this.handleCategory} />
+        <br />
+        <br />
         <VideoList videos={this.props.allVideos.slice(this.props.index, this.props.index+9)}/>
         <PageButton />
       </Fragment>

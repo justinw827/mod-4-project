@@ -91,7 +91,8 @@ const mapDispatchToProps = (dispatch) => {
           if (userData.user.username) {
             const action1 = {
               type: 'CHANGE_CURRENT_USER',
-              user_id: userData.user.id
+              user_id: userData.user.id,
+              username: userData.user.username
             }
             const action2 = {
               type: "UPDATE_USER_VIDEOS",
@@ -128,7 +129,8 @@ const mapDispatchToProps = (dispatch) => {
         if (userData.username) {
           const action1 = {
             type: 'CHANGE_CURRENT_USER',
-            user_id: userData.id
+            user_id: userData.id,
+            username: userData.username
           }
           const action2 = {
             type: 'UPDATE_USER_VIDEOS',
