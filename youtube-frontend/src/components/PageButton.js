@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
@@ -20,11 +20,17 @@ const PageButton = (props) => {
     }
   }
 
-  return(
-  <Button.Group>
-    <Button onClick={goBack} labelPosition='left' icon='left chevron' content='Back' />
-    <Button onClick={goForword} labelPosition='right' icon='right chevron' content='Next' />
-  </Button.Group>)
+  return (
+    <Fragment>
+      <Button.Group id="pageBtn">
+        <Button onClick={goBack} labelPosition='left' icon='left chevron' content='Back' />
+        <Button onClick={goForword} labelPosition='right' icon='right chevron' content='Next' />
+      </Button.Group>
+      <br />
+      <p> </p>
+      <br />
+    </Fragment>
+  )
 }
 
 const mapStateToProps = (state) => {

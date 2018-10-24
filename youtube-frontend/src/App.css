@@ -30,3 +30,39 @@
     transform: rotate(360deg);
   }
 }
+
+#videos {
+  margin: 2em 5em 2em 5em;
+}
+
+#login-form {
+  margin: 0 5em 0 5em;
+  padding: 2em 2em 2em 2em;
+}
+
+#login-div {
+  width: 40%;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 1px 1px 25px 1px;
+  margin: 5em 2em 0em 2em;
+  padding: 3em 0em 3em 0em;
+}
+
+#signup-form {
+  margin: 0 5em 0 5em;
+  padding: 2em 2em 2em 2em;
+}
+
+#signup-div {
+  width: 40%;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 1px 1px 25px 1px;
+  margin: 5em 2em 0em 2em;
+  padding: 3em 0em 3em 0em;
+}
+
+#form-container {
+  display: flex;
+}

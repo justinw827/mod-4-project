@@ -68,6 +68,7 @@ class Home extends Component {
       <Fragment>
         <br />
         <Search handleSearch={this.handleSearch} />
+        <br />
         <CategoryList handleCategory={this.handleCategory} />
         <VideoList videos={this.props.allVideos.slice(this.props.index, this.props.index+9)}/>
         <PageButton />

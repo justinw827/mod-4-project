@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { Form, Button } from 'semantic-ui-react'
 
 const Login = (props) => {
 
@@ -10,31 +11,45 @@ const Login = (props) => {
 
   return (
     <Fragment>
-      <h1>Login</h1>
-      <form onSubmit={props.handleLogin}>
-       <label>
-         Username:
-         <input type="text" name="username" />
-       </label>
-       <label>
-        Password:
-        <input type="password" name="password" />
-       </label>
-       <input type="submit" value="Submit" />
-      </form>
+    <div id="form-container">
+      <div id="login-div">
+        <h1>Login</h1>
+        <Form id="login-form" onSubmit={props.handleLogin}>
+        <Form.Field>
+         <label>
+           Username:
+           <input type="text" name="username" />
+         </label>
+         </Form.Field>
+         <Form.Field>
+         <label>
+          Password:
+          <input type="password" name="password" />
+         </label>
+         </Form.Field>
+         <Button type="submit" value="Submit">Login</Button>
+        </Form>
+      </div>
 
-      <h1>Signup</h1>
-      <form onSubmit={props.handleSignup}>
-       <label>
-         Username:
-         <input type="text" name="username" />
-       </label>
-       <label>
-        Password:
-        <input type="password" name="password" />
-       </label>
-       <input type="submit" value="Submit" />
-      </form>
+      <div id="signup-div">
+        <h1>Signup</h1>
+        <Form id="signup-form" onSubmit={props.handleSignup}>
+        <Form.Field>
+         <label>
+           Username:
+           <input type="text" name="username" />
+         </label>
+         </Form.Field>
+         <Form.Field>
+         <label>
+          Password:
+          <input type="password" name="password" />
+         </label>
+         <Button type="submit" value="Submit">Sign Up</Button>
+         </Form.Field>
+        </Form>
+      </div>
+      </div>
     </Fragment>
   )
 }
